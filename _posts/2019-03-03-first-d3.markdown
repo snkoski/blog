@@ -16,7 +16,7 @@ I’ll also be honest (again) and say that there is way too much involved in D3 
 
 Because this is going to be a multi part series I think it will be best to focus on introducing some of the common concepts and elements that you’ll often see, and we’ll start building something in the next post.
 
-*In my defence that joke sounded much funnier in my head ¯\_(ツ)_/¯.
+*In my defence that joke sounded much funnier in my head ¯\\\_(ツ)_/¯.
 
 
 Jekyll also offers powerful support for code snippets:
