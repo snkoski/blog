@@ -1,0 +1,40 @@
+---
+layout: post
+title:  "First D3"
+date:   2019-03-03 00:00:01 -0400
+categories: d3 javascript
+---
+So here we are, after months of learning Python, figuring out how to scrape data, and learning how to put circles and squares on the DOM, we’re finally ready to dive into D3.
+
+I’m going to be honest, the first time I looked at D3 code I was very very confused. It definitely has some interesting quarks, like selecting elements that haven’t been created yet, but after a while even I could understand (most) of what was going on.
+
+If your still not sure if D3 is right for you I highly recommend checking out [bl.ocks.org][blocks] and [observablehq.com][observable] both of these sites have tons of amazing examples of what D3 is capable of. You will definitely be able to find something interesting to help motivate you to learn more.
+
+I will also mention that D3 is currently on version 5 but you will probably run into code from every version as you look up different projects. Just keep this in mind if you ever run into code that looks especially different from what you’ve been learning.
+
+I’ll also be honest (again) and say that there is way too much involved in D3 for me to fit into one blog post, so this will definitely be a two parter, or maybe a (D) 3 parter…*
+
+Because this is going to be a multi part series I think it will be best to focus on introducing some of the common concepts and elements that you’ll often see, and we’ll start building something in the next post.
+
+*In my defence that joke sounded much funnier in my head ¯\_(ツ)_/¯.
+
+
+Jekyll also offers powerful support for code snippets:
+
+{% highlight ruby %}
+def print_hi(name)
+  puts "Hi, #{name}"
+end
+print_hi('Tom')
+#=> prints 'Hi, Tom' to STDOUT.
+{% endhighlight %}
+
+{% highlight python linenos %}
+def print_hi(name):
+  print("hi {}!".format(name))
+print_hi('Tom')
+#=> prints 'hi Tom!' to STDOUT.
+{% endhighlight%}
+
+[blocks]: https://bl.ocks.org/
+[observable]: https://observablehq.com/
