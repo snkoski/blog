@@ -1,0 +1,77 @@
+---
+layout: post
+title:  "SVGs"
+date:   2019-02-24 12:00:00 -0400
+categories:
+---
+Now that I’ve been able to collect and structure the data that I want to use it’s time to start thinking about how I want to display it. I’ve had an interest in the data visualization library D3.js for sometime now, so I feel like this will be a great opportunity to learn how to use it.
+
+Upon looking into D3 one of the first things I notice is that all the visuals that it creates are made up of SVG elements.
+
+SVGs, or scalable vector graphics, are XML-based vector images. In simple terms this means that the shapes and images you create can be resized without affecting the resolution, or No Pixelation! It also means they can be searched, indexed, scripted, and compressed, but let’s not worry about any of that now.
+
+Now that we know the bare, bare bare minimum about SVGs let’s just dive in and see how we can make them. Here we can see the absolute most basic svg you could possibly imagine making:
+
+{% highlight html %}
+<svg width="100" height="100"> </svg>
+{% endhighlight %}
+
+If you’re familiar with HTML this probably looks pretty familiar, even though it’s XML. With this code we are making an SVG element with a width of 100 pixels and a height of, you guessed it, 100 pixels. Pretty simple, right?
+
+Now if you put this code into a file and pull it up on your browser you might notice that it doesn’t look like anything is on the page. And you would mostly be right, sort of... If you inspect the page you’ll be able to see the svg element in your developer tools, but won’t be able to see anything on the page.
+
+At this point you might have a few questions like: if we already made our SVG why isn’t anything being displayed? Because we didn’t assign our SVG any styles to display. Why didn’t we apply any styles to our SVG? Because we don’t want to display the SVG on the screen. Why on earth would we make this SVG if we didn’t want to display it? OK, so this was the part I was kind of holding out on, but the SVG element isn’t so much something you want to display as it is a container for the other elements you will be displaying. You can think of it like a canvas, not to be confused with the HTML canvas element, that you will be “painting” other beautiful elements on.
+
+So what are these other elements that we can put on our “canvas”? SVGs come in four basic shapes: rectangles, circles, ellipses, and lines. And I know a line might not actually be a shape but it is a simple SVG element so we’re just going to lump it in with the others anyways.
+
+The first shape we’ll look at is a rectangle. Placing a rectangle onto the page is done by adding a `<rect>` tag inside `<svg>` tag we previously made as seen below.
+
+{% highlight html %}
+<svg width="100" height="100">
+  <rect x="0" y="0" width="50" height="50" fill="#ffffff"/>
+</svg>
+{% endhighlight %}
+
+Let’s take a look at what’s going on here. As mentioned above `<rect>` tells us that we are going to make a rectangular element.
+
+First, we have “x” and “y”, if you think these seem a lot like graph coordinates you would be right. These attributes will be where the top left corner of your rectangle is placed. Much like the graphs we all know and love the “x” attribute will determine the horizontal placement and the “y” attribute will determine the vertical placement. Unlike the graphs we all know and love, increasing the “y” value will move the point down toward the bottom of the page. This was one of the hardest things to get used to when I first started using SVGs. In this example the 0’s are measured in pixels, but you can also use % and vh/vw to change the placement of your rectangle based on the size of the SVG you are putting it into, or based on the current view-width or height.
+
+Next, we have our rectangle’s width and height attributes. Just as it sounds these will determine how big our rectangle is. Currently they are being sized in pixels, but much like the x and y attributes you can also use % and vw/vh to dynamically determine the size of the element.
+
+Last, we have the “fill” attribute. This is where you can determine the color of the rectangle. Fill can take any of the same color arguments that you can use with HTML such as color names, rgb values, or hex values as shown in this example.
+
+When we add this rectangle element to our SVG element we created earlier you’ll get a yellow square that is 50x50 pixels in the top left of our SVG. Isn’t it beautiful?
+
+Now that you know the basics of adding elements to our SVG the next few should be even easier to understand.
+
+Adding a circle to our page is done by using the `<circle>` tag, pretty intuitive. This tag looks similar to the `<rect>` tag we previously made but with a few different attributes.
+
+{% highlight html %}
+<circle cx="100" cy="350" r="100" fill="#ffffff" stroke="red" stroke-width="2"/>
+{% endhighlight %}
+
+The first thing you probably noticed is that our “x” and “y” attributes have been replace by “cx” and “cy”. So what do these mysterious c’s stand for? Is it for circle? Is it for center? Honestly I’m not sure, but it’s probably for one of those. Anyways, as you can probably guess by now these values will determine the position of the center of your circle.
+
+The “r” attribute that comes next will determine the radius of your circle. In case you need a reminder the radius is the distance from the center of a circle to its edge. Because we are using the radius to determine the size of the circle it is important to remember that the height and width will be double whatever you assign to “r”.
+
+For this circle I’ve included two new attributes that we can use to style the element, stroke and stroke-width. These will both be used to add an outline to the circle. Stroke will determine the color of the outline and stroke-width will, naturally, determine the width of the outline. As with fill, stroke can take many different types of input such as color names, rgb values, or hex values. Stroke-width will default to pixels but you can also use percentages (%) or vw/vh to determine the width dynamically.
+
+The final shape I want to talk about today is the ellipse. Merriam-Webster describes an ellipse as “a closed plane curve generated by a point moving in such a way that the sums of its distances from two fixed points is a constant : a plane section of a right circular cone that is a closed curve.” Probably better known as an oval. The code for making an ellipse is as follows.
+
+{% highlight html %}
+<ellipse cx="100" cy="600" rx="50" ry="100" fill="#ffffff"/>
+{% endhighlight %}
+
+Because an ellipse is just a long circle the code to make one is very similar to the code for a circle. You’ll notice that the only difference here is that instead of having an “r” attribute we have “rx” and “ry” attributes. As you can probably guess these attributes are used to determine the lengths of the radius across the x and y axis. If the “rx” attribute is larger you will get an oval stretched horizontally; if “ry” is larger you will have an oval stretched vertically.
+
+I know I said ellipses were the last shape I wanted to talk about, but there is one more element that I feel would be good to mention. Lines.
+
+{% highlight html %}
+<line x1="0" y1="0" x2="50" y2="50" stroke="#ffffff" stroke-width="2"/>
+{% endhighlight %}
+
+The easiest way to think about a line element is that it is a connection between to points on you SVG. Knowing that you can probably guess that “x1” and “y1” determine the placement of the first point and “x2” and “y2” the second point. In this example the line would start in the top left corner and end 50 pixels to the right and 50 pixels down from the starting point.
+
+Unlike other elements a line does not have a fill attribute, instead the color can be changed using the stroke attribute. Along with the stroke attribute lines also have the stroke-width attribute that can be used to determine how thick the line will be.
+
+That’s all for the basic SVG shapes and how to make them. Hopefully you learned a little about how to place and style the different shapes and hopefully this will be enough to know to be able to start using D3.js and getting some nice visuals for the data we have.
