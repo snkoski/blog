@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "First D3"
+title:  "D3 Scales"
 date:   2019-03-03 12:00:00 -0400
 categories:
 ---
@@ -16,25 +16,39 @@ I’ll also be honest (again) and say that there is way too much involved in D3 
 
 Because this is going to be a multi part series I think it will be best to focus on introducing some of the common concepts and elements that you’ll often see, and we’ll start building something in the next post.
 
+## Scale
+
+As I mentioned before, the first time I looked at D3 code I could not for the life of me figure out what was going on. Scales were definitely one of the main causes of this confusion, but they have also turned out to be one of the most important elements of D3 to understand. So even though they might seem confusing at first, once you start using them and understand how they work you will be thankful they exist.
+
+So what exactly are scales?
+
+Scales are used when we want to place elements on our chart, as well as to help us create the axis for our chart. It might seem like doing these things would be easy enough to do on our own, but using scales will let us handle these dynamically.
+
+Ok, that sounds pretty great, but what do scales actually do?
+
+Using scales we can tell D3 the range of numbers that we will be inputting into our chart and the size of our chart. D3 can then use these numbers to determine where on the chart our points should land. This way we can be sure our points are landing in the correct place regardless of how big or small our chart is. This is also how we will be able to dynamically control the axes of our chart.
+
+Now that we know what scales do how do we set them up?
+
+For most basic setups we will use three methods: a scale, domain, and range.
+
+Depending on the type of data you are using will determine the scale method that you should use. The two most common are scaleLinear and scaleTime. You'll use scaleLinear to make a continuous scale and, as you can probably guess, scaleTime when you are working with time data.
+
+Next is the domain method. This will be the range of numbers that can be input into your chart. For example if you a charting something on a daily basis for a year your range might be 1 - 365, or if your charting the top 20 scorers in NBA history your range would be 25375 - 38387. To set up this range for your chart domain take an array with two values the minimum and maximum possible values for your chart.
+
+Last is the range method. Like domain it will take an array of a minimum and maximum value, but instead of correlating to input values it is correlated to the output you want to display. In most instances this will zero and the height or width of your chart.
+
+If you are still confused I'll give you a quick example of how these methods work together. Lets imagine you are keeping track of the temperature for each day of a year. Your x-axis will be each day so your domain will be 1 - 365 representing all the possible days you might input for a year. Now imagine that your chart is 800 pixels wide so you'll pass 0 - 800 into your range method. Now if you chart a value on April 10th, or the 100th day of the year, your marker for the day will be on the 219th pixels of your chart. By using the domain and range methods all the calculations for where elements are placed on your chart are taken care of for you.
+
+Using this same pattern you could also setup a scale for your y-axis that is correlated to the height of your chart. In fact this will be the pattern you see in the vast majority (possibly all) of the D3 charts you run into. hese scales are commonly named either xScale/yScale or simply x/y.
+
+One more interesting thing about these methods is that you can flip the correspondence between input and output by flipping the values you enter into range. For the previous example this means that if your input was 1 it would actually be charted on the 800th pixels of your chart. This flipping will become necessary when dealing with the y-axis on many charts, because as we learned before the y-coordinates of an SVG start with 0 at the top and move down as you increase the value.
+
+Ok, this post has already become longer than I thought and something has become apparent. With my goal of keeping these posts in the 4-5 minute range it is going to take more than two or three posts to share everything I've learned about D3. I guess this is were we'll leave it for now, but the next post on data joins will be out soon. (Future link to data joins blog post here)
+
+
+
 *In my defence that joke sounded much funnier in my head ¯\\\_(ツ)_/¯.
-
-
-Jekyll also offers powerful support for code snippets:
-
-{% highlight ruby %}
-def print_hi(name)
-  puts "Hi, #{name}"
-end
-print_hi('Tom')
-#=> prints 'Hi, Tom' to STDOUT.
-{% endhighlight %}
-
-{% highlight python linenos %}
-def print_hi(name):
-  print("hi {}!".format(name))
-print_hi('Tom')
-#=> prints 'hi Tom!' to STDOUT.
-{% endhighlight%}
 
 [blocks]: https://bl.ocks.org/
 [observable]: https://observablehq.com/
